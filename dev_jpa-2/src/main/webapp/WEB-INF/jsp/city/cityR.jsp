@@ -14,7 +14,10 @@ ${city.cityId} / ${city.cityNm}
 
 <br>
 <a href="/city/list">목록으로</a>
+	<br>
 <a href="/city/update/${city.cityId}">수정</a>
+	<br>
+<a href="/city/delete/${city.cityId}">삭제</a> 
 
 </body>
 </html>

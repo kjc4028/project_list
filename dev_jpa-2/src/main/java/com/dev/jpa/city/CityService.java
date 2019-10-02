@@ -43,4 +43,7 @@ public class CityService {
 		return cityRepository.findByCityId(id);
 	}
 	
+	public void deleteById(Long id){
+		cityRepository.deleteById(id);
+	}
 }

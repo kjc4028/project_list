@@ -57,5 +57,13 @@ public class CityController {
 		cityService.saveCity(cityEntity);
 		return "redirect:/city/read/"+cityEntity.getCityId();
 	}
+ 
+	@RequestMapping(value="/delete/{cityId}", method=RequestMethod.GET)
+	public String delete(Model model, CityEntity cityEntity){
+		cityService.deleteById(cityEntity.getCityId());
+		return "redirect:/city/list/";
+	}
+	
+	
 	
 }
