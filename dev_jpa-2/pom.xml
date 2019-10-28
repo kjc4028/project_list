@@ -61,7 +61,14 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
+		
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>3.12.2</version>
+			<scope>test</scope>
+		</dependency>
+		
 		<dependency>
 		    <groupId>org.apache.tomcat.embed</groupId>
 		    <artifactId>tomcat-embed-jasper</artifactId>
@@ -84,6 +91,11 @@
 	</build>
 
 	<repositories>
+		<repository>
+			<id>nexus</id>
+			<name>nexus-local-public</name>
+			<url>http://localhost:8081/nexus/content/groups/public/</url>
+		</repository>
 		<repository>
 			<id>spring-milestones</id>
 			<name>Spring Milestones</name>
