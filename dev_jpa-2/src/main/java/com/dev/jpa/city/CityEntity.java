@@ -17,7 +17,7 @@ import lombok.Setter;
 public class CityEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	Long cityId;
 	
 	@Column

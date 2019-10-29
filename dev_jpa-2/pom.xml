@@ -35,6 +35,12 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+        <!-- Oracle JDBC driver -->
+		<dependency>
+			<groupId>com.oracle.ojdbc</groupId>
+			<artifactId>ojdbc8</artifactId>
+		</dependency>
+         <!-- H2 해제 -->		
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
