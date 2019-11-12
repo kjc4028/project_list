@@ -1,4 +1,4 @@
-package com.dev.jpa;
+package com.dev.jpa.usr.controller;
 
 import java.util.List;
 
@@ -7,11 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.dev.jpa.usr.entity.UsrEntity;
+import com.dev.jpa.usr.repository.UsrRepository;
+
 @Controller
-public class MemberController {
+public class UsrController {
 
 	@Autowired
-	MemberRepository repo;
+	UsrRepository repo;
 	
 	@RequestMapping("/")
 	public String home(){
@@ -20,9 +23,9 @@ public class MemberController {
 
 	@RequestMapping("/show")
 	public String show(Model model) throws NoSuchFieldException, SecurityException{
-		List<Member> memberList =  repo.findAll();
+		List<UsrEntity> memberList =  repo.findAll();
 		System.out.println("show count-------------------" + memberList.size());
-		for(Member mem : memberList){
+		for(UsrEntity mem : memberList){
 			System.out.println("show-------------------");
 		}
 		model.addAttribute("mList",memberList);
@@ -32,7 +35,7 @@ public class MemberController {
 	@RequestMapping("/insert")
 	public String insert(){
 		
-		Member mem = new Member("test");
+		UsrEntity mem = new UsrEntity();
 		
 		repo.save(mem);
 		System.out.println("insert-------------------");
