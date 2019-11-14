@@ -9,8 +9,5 @@
 </head>
 <body>
 Home <br>
-<c:forEach items="${mList}" var="list">
-${list.id} ${list.name} <br>
-</c:forEach>
 </body>
 </html>

@@ -35,17 +35,27 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
-        <!-- Oracle JDBC driver -->
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+	           
+		<!-- mariaDb -->
+	      <dependency>
+	          <groupId>org.mariadb.jdbc</groupId>
+	          <artifactId>mariadb-java-client</artifactId>
+	      </dependency>		
+        <!-- Oracle JDBC driver -->
+		<!-- <dependency>
 			<groupId>com.oracle.ojdbc</groupId>
 			<artifactId>ojdbc8</artifactId>
-		</dependency>
+		</dependency> -->
          <!-- H2 해제 -->		
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
-		</dependency>
+		</dependency> -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
