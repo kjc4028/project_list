@@ -8,6 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-Home <br>
+Main Page <br>
+
+<a href="/usr/join">회원가입</a>
 </body>
 </html>
