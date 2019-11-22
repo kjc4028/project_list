@@ -22,7 +22,7 @@ public class UsrEntity {
 	}
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long usrSeq;
 	
 	/*
@@ -31,6 +31,11 @@ public class UsrEntity {
 	@Column(length = 20, nullable = false, unique = true, updatable = false)
 	private String usrId;
 	
+	/*
+	 * 사용자 비밀번호
+	 */
+	@Column(length = 200, nullable = false)
+	private String usrPw;
 	/*
 	 * 사용자 성명
 	 */
@@ -68,13 +73,14 @@ public class UsrEntity {
 	private String telNum3;
 	
 	@Builder
-	public UsrEntity(Long usrSeq, String usrId, String usrNm, String rrn, String gender) {
+	public UsrEntity(Long usrSeq, String usrId, String usrNm, String rrn, String gender, String usrPw) {
 		super();
 		this.usrSeq = usrSeq;
 		this.usrId = usrId;
 		this.usrNm = usrNm;
 		this.rrn = rrn;
 		this.gender = gender;
+		this.usrPw = usrPw;
 	}
 
 	public void setUsrSeq(Long usrSeq) {
@@ -83,6 +89,10 @@ public class UsrEntity {
 
 	public void setUsrId(String usrId) {
 		this.usrId = usrId;
+	}
+
+	public void setUsrPw(String usrPw) {
+		this.usrPw = usrPw;
 	}
 
 	public void setUsrNm(String usrNm) {
