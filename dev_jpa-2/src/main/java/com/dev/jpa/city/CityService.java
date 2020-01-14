@@ -28,7 +28,12 @@ public class CityService {
 	
 	
 	public List<CityEntity> findAll(){
-		return cityRepository.findAll();
+		try {
+			return cityRepository.findAll();
+		} catch (Exception e) {
+			System.out.println("=======================================error");
+			return null;
+		}
 	}
 	
 	public void saveCity(CityEntity cityEntity){

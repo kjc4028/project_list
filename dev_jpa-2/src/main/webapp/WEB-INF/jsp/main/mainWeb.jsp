@@ -9,7 +9,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body class="d-flex flex-column h-100">
+
+<jsp:include page="/WEB-INF/jsp/common/header.jsp"/>
+
 Main Page <br>
 
 ${user }

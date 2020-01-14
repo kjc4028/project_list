@@ -21,7 +21,15 @@ public class CityController {
 	
 	@RequestMapping(value="/list")
 	public String selectAllList(Model model){
-		model.addAttribute("list", cityService.findAll());
+		
+		
+		try {
+			System.out.println("DB__connection");
+			model.addAttribute("list", cityService.findAll());
+		} catch (Exception e) {
+			System.out.println("DB_not_connection");
+			model.addAttribute("list", null);
+		}
 		return "city/cityList";
 	}
 
