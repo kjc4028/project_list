@@ -7,9 +7,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>메인페이지</title>
 </head>
-<body class="d-flex flex-column h-100">
+<body>
 
 <jsp:include page="/WEB-INF/jsp/common/header.jsp"/>
 

@@ -19,7 +19,8 @@ public class MainController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		System.out.println("auth------------ "+auth.getName());
 		if(auth.getName().equals("anonymousUser")){
-			return "/main/mainWeb";
+			//return "/main/mainWeb";
+			return "/common/header";
 		}
 		User user = (User)auth.getPrincipal();
 		System.out.println("user.getUsername()------------" + user.getUsername());
