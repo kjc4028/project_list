@@ -8,17 +8,54 @@
 <title>회원가입</title>
 </head>
 <body>
-	<form:form modelAttribute="usrEntity" method="post">
-		아이디:<form:input path="usrId"/><br>
-		비밀번호:<form:password path="usrPw"/><br>
-		성명:<form:input path="usrNm"/><br>
-		주민번호 앞자리<form:input path="rrn"/><br>
-		성별:<form:radiobutton path="gender" label="남" value="M"/>
-		<form:radiobutton path="gender" label="여" value="F"/><br>
-		전화번호:<form:input path="telNum1"/> - 
-		<form:input path="telNum2"/> - 
-		<form:input path="telNum3"/>
-		<button>회원가입</button>
-	</form:form>
+<jsp:include page="/WEB-INF/jsp/common/header.jsp"/>
+
+	<main role="main">
+	  <div class="container marketing">
+	    <div class="row">
+	      <div class="col-lg-10">
+			<form:form modelAttribute="usrEntity" method="post" class="form-horizontal">
+				<div class="form-group">
+					<label for="usrId" class="col-sm-2 control-label">ID</label>
+					<form:input path="usrId" class="form-control" placeholder="Enter ID"/>
+				</div>
+				<div class="form-group">
+					<label for="usrPw" class="col-sm-2 control-label">Password</label>
+					<form:password path="usrPw" class="form-control" placeholder="Password"/>
+				</div>
+				<div class="form-group">
+					<label for="usrNm" class="col-sm-2 control-label">NAME</label>
+					<form:input path="usrNm" class="form-control" placeholder="Enter NAME"/>
+				</div>				
+				<div class="form-group">
+					<label for="rrn" class="col-sm-2 control-label">생년월일</label>
+					<form:input path="rrn" class="form-control" placeholder="Enter RRN"/>
+				</div>				
+				<div class="form-group">
+					<label for="gender" class="col-sm-2 control-label">성별</label>
+					<label class="radio-inline">
+						<form:radiobutton path="gender" label="남" value="M"/>
+					</label>
+					<label class="radio-inline">
+						<form:radiobutton path="gender" label="여" value="F"/>				
+					</label>
+				</div>
+				
+				<div class="form-group">
+					<label for="telNum1" class="col-sm-2 control-label">전화번호</label>
+					<form:input path="telNum1" class="form-control" placeholder="010"/>
+					<form:input path="telNum2" class="form-control" placeholder="0000"/>
+					<form:input path="telNum3" class="form-control" placeholder="0000"/>
+				</div>
+				<button  class="btn btn-primary">회원가입</button>
+			</form:form>
+			
+					        
+	      </div><!-- /.col-lg-10 -->
+	    </div><!-- /.row -->
+	  </div><!-- /.container -->
+	</main>
+	
+
 </body>
 </html>
