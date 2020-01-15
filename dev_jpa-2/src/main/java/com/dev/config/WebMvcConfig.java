@@ -1,4 +1,4 @@
-package com.dev;
+package com.dev.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -13,8 +13,8 @@ import com.dev.interceptor.UserInterceptor;
 public class WebMvcConfig implements WebMvcConfigurer{
 
 	@Autowired
-	@Qualifier("userInterceptor")
-	private UserInterceptor usrInterceptor;
+	/*@Qualifier("userInterceptor")*/
+    UserInterceptor usrInterceptor;
 	
 	/*
 	 * Interceptor 선언
