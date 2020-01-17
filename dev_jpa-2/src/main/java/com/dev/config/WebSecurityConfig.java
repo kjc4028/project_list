@@ -1,5 +1,7 @@
 package com.dev.config;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,6 +25,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
 	UsrService usrService;
 	
+	@Autowired
+	private DataSource dataSource;
+	
 	@Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -31,8 +36,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
         http
-        .authorizeRequests()
-            .antMatchers("/", "/usr/join", "/resources/**", "/docs/**").permitAll()
+        .authorizeRequests() /*인가 설정*/
+            .antMatchers("/", "/usr/join", "/resources/**", "/docs/**").permitAll() //모든 권한 인가 허용
+            .antMatchers("/admin/**").hasRole("ADMIN")
             .anyRequest().authenticated()
             .and()
         .formLogin()
@@ -52,7 +58,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
     
     @Override
+    /*
+     * 인증 시 비밀번호 함호화 설정
+     */
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(usrService).passwordEncoder(passwordEncoder());
+        
+        auth.jdbcAuthentication()
+        		.usersByUsernameQuery("")
+        		.groupAuthoritiesByUsername("")
+        		.dataSource(dataSource);
+        		
     }    
 }
