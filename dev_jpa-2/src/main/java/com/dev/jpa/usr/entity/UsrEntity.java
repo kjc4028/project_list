@@ -1,10 +1,17 @@
 package com.dev.jpa.usr.entity;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Builder;
@@ -24,6 +31,11 @@ public class UsrEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long usrSeq;
+	
+	@OneToMany
+	@JoinTable(name = "TB_USR_ROLE", joinColumns =  @JoinColumn(name = "usr_seq"), inverseJoinColumns = @JoinColumn(name="role_cd"))
+	//@JoinColumn(name = "USR_SEQ")
+	private Set<RoleEntity> role;
 	
 	/*
 	 * 사용자 아이디
