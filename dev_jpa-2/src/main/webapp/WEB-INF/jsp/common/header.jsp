@@ -38,7 +38,10 @@
 		</sec:authorize>
 		<sec:authorize access="isAuthenticated()">
 		<a class="nav-link" href="/usr/logout">${user}님 로그아웃</a>
-		</sec:authorize>		
+		</sec:authorize>	
+        <li class="nav-item">
+        	<a class="nav-link" href="/city/list">도시관리(관리자)</a>
+        </li>			
         <!-- <li class="nav-item">
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
         </li> -->

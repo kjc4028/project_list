@@ -28,12 +28,14 @@ public class UsrEntity {
 	public UsrEntity() {
 	}
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long usrSeq;
+	/*
+	 * @Id
+	 * 
+	 * @GeneratedValue(strategy = GenerationType.AUTO) private Long usrSeq;
+	 */
 	
 	@OneToMany
-	@JoinTable(name = "TB_USR_ROLE", joinColumns =  @JoinColumn(name = "usr_seq"), inverseJoinColumns = @JoinColumn(name="role_cd"))
+	@JoinTable(name = "TB_USR_ROLE", joinColumns =  @JoinColumn(name = "usr_id"), inverseJoinColumns = @JoinColumn(name="role_cd"))
 	//@JoinColumn(name = "USR_SEQ")
 	private Set<RoleEntity> role;
 	
@@ -41,6 +43,7 @@ public class UsrEntity {
 	 * 사용자 아이디
 	 */
 	@Column(length = 20, nullable = false, unique = true, updatable = false)
+	@Id
 	private String usrId;
 	
 	/*
@@ -85,18 +88,13 @@ public class UsrEntity {
 	private String telNum3;
 	
 	@Builder
-	public UsrEntity(Long usrSeq, String usrId, String usrNm, String rrn, String gender, String usrPw) {
+	public UsrEntity(String usrId, String usrNm, String rrn, String gender, String usrPw) {
 		super();
-		this.usrSeq = usrSeq;
 		this.usrId = usrId;
 		this.usrNm = usrNm;
 		this.rrn = rrn;
 		this.gender = gender;
 		this.usrPw = usrPw;
-	}
-
-	public void setUsrSeq(Long usrSeq) {
-		this.usrSeq = usrSeq;
 	}
 
 	public void setUsrId(String usrId) {
