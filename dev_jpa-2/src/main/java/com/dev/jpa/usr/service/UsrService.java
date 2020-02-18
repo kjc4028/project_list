@@ -1,8 +1,11 @@
 package com.dev.jpa.usr.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.management.relation.Role;
 import javax.transaction.Transactional;
@@ -20,6 +23,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.dev.jpa.usr.entity.RoleEntity;
 import com.dev.jpa.usr.entity.UsrEntity;
 import com.dev.jpa.usr.repository.UsrRepository;
 
@@ -55,25 +59,20 @@ public class UsrService implements UserDetailsService  {
 	 */
 	@Override
 	public UserDetails loadUserByUsername(String usrId) throws UsernameNotFoundException {
-		/*Optional<UsrEntity>userEntityWrapper = usrRepository.findByUsrId(usrId);
-		UsrEntity usrEntity = userEntityWrapper.get();
 		
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(Role.MEMBER.getValue()));
-        
-		log.info("----loadUserByUsername---");
-		log.info(userEntityWrapper.toString());
-		return new User(usrEntity.getUsrId(), usrEntity.getUsrPw(),);*/
+		//TODO 회원가입시 디폴트 권한 부여 
+		
 		log.info("--------loadUserName---");
         Optional<UsrEntity> userEntityWrapper = usrRepository.findByUsrId(usrId);
         UsrEntity userEntity = userEntityWrapper.get();
-
         List<GrantedAuthority> authorities = new ArrayList<>();
-
-        if (("admin").equals(usrId)) {
-            authorities.add(new SimpleGrantedAuthority("ADMIN"));
+        Set<RoleEntity> roleEntity = userEntity.getRole();
+        String authRoleNm = roleEntity.iterator().next().getRoleNm();
+        
+        if(!userEntity.getRole().isEmpty()) {
+        	authorities.add(new SimpleGrantedAuthority(authRoleNm));
         } else {
-            authorities.add(new SimpleGrantedAuthority("USER"));
+        	authorities.add(new SimpleGrantedAuthority("USER"));
         }
 
         return new User(userEntity.getUsrId(), userEntity.getUsrPw(), authorities);
