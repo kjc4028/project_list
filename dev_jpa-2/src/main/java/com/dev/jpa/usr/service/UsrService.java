@@ -74,7 +74,6 @@ public class UsrService implements UserDetailsService  {
         } else {
         	authorities.add(new SimpleGrantedAuthority("USER"));
         }
-
         return new User(userEntity.getUsrId(), userEntity.getUsrPw(), authorities);
     }
 }

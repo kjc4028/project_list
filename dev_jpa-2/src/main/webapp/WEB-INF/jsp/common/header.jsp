@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>    
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,19 +29,21 @@
         </li>
 
         <sec:authorize access="isAnonymous()">
-        <li class="nav-item">
-        	<a class="nav-link" href="/usr/join">회원가입</a>
-        </li>
-        <li class="nav-item">
-        	<a class="nav-link" href="/usr/login">로그인</a>
-        </li>
+	        <li class="nav-item">
+	        	<a class="nav-link" href="/usr/join">회원가입</a>
+	        </li>
+	        <li class="nav-item">
+	        	<a class="nav-link" href="/usr/login">로그인</a>
+	        </li>
 		</sec:authorize>
 		<sec:authorize access="isAuthenticated()">
-		<a class="nav-link" href="/usr/logout">${user}님 로그아웃</a>
+			<a class="nav-link" href="/usr/logout">${user}님 로그아웃</a>
 		</sec:authorize>	
-        <li class="nav-item">
-        	<a class="nav-link" href="/city/list">도시관리(관리자)</a>
-        </li>			
+		<sec:authorize access="hasAuthority('ADMIN')">
+	        <li class="nav-item">
+	        	<a class="nav-link" href="/city/list">도시관리(관리자)</a>
+	        </li>			
+		</sec:authorize>
         <!-- <li class="nav-item">
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
         </li> -->
