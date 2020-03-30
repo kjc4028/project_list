@@ -1,6 +1,8 @@
 package com.dev.jpa.usr.controller;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +18,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.dev.jpa.usr.entity.RoleEntity;
+import com.dev.jpa.usr.entity.RoleUsrEntity;
 import com.dev.jpa.usr.entity.UsrEntity;
+import com.dev.jpa.usr.service.RoleUsrService;
 import com.dev.jpa.usr.service.UsrService;
 
 
@@ -28,6 +33,9 @@ public class UsrController {
 
 	@Autowired
 	UsrService usrService;
+	
+	@Autowired
+	RoleUsrService roleUsrService;
 	
 	@RequestMapping("")
 	public String home(){
@@ -53,9 +61,16 @@ public class UsrController {
 	
 	@RequestMapping(value="/join", method=RequestMethod.POST)
 	public String insert(HttpServletRequest req, HttpServletResponse res, UsrEntity usrEntity, Model model){
+		
+		 
 		usrService.save(usrEntity);
 		System.out.println("insert-------------------");
-		System.out.println(usrEntity);
+		System.out.println(usrEntity.toString());
+		
+		RoleUsrEntity roleUsrEntity = new RoleUsrEntity();
+		roleUsrEntity.setRoleCd("R01"); 
+		roleUsrEntity.setUsrId(usrEntity.getUsrId());
+		roleUsrService.save(roleUsrEntity);
 		return "redirect:/";
 	}	
 	

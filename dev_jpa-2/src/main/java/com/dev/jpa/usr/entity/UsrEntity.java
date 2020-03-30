@@ -34,10 +34,17 @@ public class UsrEntity {
 	 * @GeneratedValue(strategy = GenerationType.AUTO) private Long usrSeq;
 	 */
 	
-	@OneToMany
-	@JoinTable(name = "TB_USR_ROLE", joinColumns =  @JoinColumn(name = "usr_id"), inverseJoinColumns = @JoinColumn(name="role_cd"))
-	//@JoinColumn(name = "USR_SEQ")
-	private Set<RoleEntity> role;
+	//@OneToMany
+	@OneToOne
+	//@JoinTable(name = "TB_USR_ROLE", joinColumns =  @JoinColumn(name = "usr_id"), inverseJoinColumns = @JoinColumn(name="role_cd"))
+	//@JoinTable(name = "TB_USR_ROLE", joinColumns =  @JoinColumn(name = "usr_id"))
+	@JoinColumn(name = "usr_id", referencedColumnName = "usr_id") 
+	//private Set<RoleUsrEntity> role;
+	private RoleUsrEntity role;
+	
+	public void setRole(RoleUsrEntity role) {
+		this.role = role;
+	}
 	
 	/*
 	 * 사용자 아이디

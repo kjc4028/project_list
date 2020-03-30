@@ -24,6 +24,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.dev.jpa.usr.entity.RoleEntity;
+import com.dev.jpa.usr.entity.RoleUsrEntity;
 import com.dev.jpa.usr.entity.UsrEntity;
 import com.dev.jpa.usr.repository.UsrRepository;
 
@@ -50,8 +51,9 @@ public class UsrService implements UserDetailsService  {
 		//String ecryptPw =bCryptPasswordEncoder.encode(usr.getUsrPw());
 		 BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 		 usr.setUsrPw(bCryptPasswordEncoder.encode(usr.getUsrPw()));
-		log.info(usr.getUsrPw() + " + " + bCryptPasswordEncoder.encode(usr.getUsrPw()));
-		usrRepository.save(usr);
+		 log.info("pwd::===========================");
+		 log.info(usr.getUsrPw() + " + " + bCryptPasswordEncoder.encode(usr.getUsrPw()));
+		 usrRepository.save(usr);
 	}
 
 	/**
@@ -66,13 +68,16 @@ public class UsrService implements UserDetailsService  {
         Optional<UsrEntity> userEntityWrapper = usrRepository.findByUsrId(usrId);
         UsrEntity userEntity = userEntityWrapper.get();
         List<GrantedAuthority> authorities = new ArrayList<>();
-        Set<RoleEntity> roleEntity = userEntity.getRole();
-        String authRoleNm = roleEntity.iterator().next().getRoleNm();
+        //Set<RoleUsrEntity> roleUsrEntity = userEntity.getRole();
+        RoleUsrEntity roleUsrEntity = userEntity.getRole();
+        //String authRoleCd = roleUsrEntity.iterator().next().getRoleCd();
+        String authRoleCd = roleUsrEntity.getRoleCd();
         
-        if(!userEntity.getRole().isEmpty()) {
-        	authorities.add(new SimpleGrantedAuthority(authRoleNm));
+        //if(!userEntity.getRole().isEmpty()) {
+        if(userEntity.getRole() != null) {
+        	authorities.add(new SimpleGrantedAuthority(authRoleCd));
         } else {
-        	authorities.add(new SimpleGrantedAuthority("USER"));
+        	authorities.add(new SimpleGrantedAuthority("R01"));
         }
         return new User(userEntity.getUsrId(), userEntity.getUsrPw(), authorities);
     }

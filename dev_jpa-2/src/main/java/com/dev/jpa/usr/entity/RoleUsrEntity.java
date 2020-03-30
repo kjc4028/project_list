@@ -12,16 +12,17 @@ import lombok.Getter;
 
 @Entity
 @Data
-@Table(name="TB_ROLE")
-public class RoleEntity {
+@Table(name="TB_USR_ROLE")
+public class RoleUsrEntity {
 
-	public RoleEntity() {
+	public RoleUsrEntity() {
 	}
 	
 	@Id
 	@Column(nullable = false)
+	private String usrId;
+	
+	@Column(nullable = false)
 	private String roleCd;
 	
-	@Column
-	private String roleNm;
 }
