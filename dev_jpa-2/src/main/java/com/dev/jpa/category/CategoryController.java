@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.dev.jpa.usr.service.UsrService;
+
 @Controller
 @RequestMapping("/category")
 public class CategoryController {
@@ -30,6 +32,7 @@ public class CategoryController {
 	
 	@RequestMapping(value="/insert", method=RequestMethod.POST)
 	public String categoryInsert(Model model, HttpServletRequest request, HttpServletResponse response, CategoryEntity categoryEntity) {
+		
 		categoryService.save(categoryEntity);
 		return "redirect:/category/list";
 	}

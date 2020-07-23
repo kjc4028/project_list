@@ -2,6 +2,7 @@ package com.dev.jpa.main;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,10 +22,9 @@ public class MainController {
 		if(auth.getName().equals("anonymousUser")){
 			return "/main/mainWeb";
 		}
+		HttpSession session = req.getSession();
 		User user = (User)auth.getPrincipal();
-		System.out.println("user.getUsername()------------" + user.getUsername());
-		
-		model.addAttribute("user", user.getUsername());
+		session.setAttribute("user", user);		
 		return "/main/mainWeb";
 	}
 }

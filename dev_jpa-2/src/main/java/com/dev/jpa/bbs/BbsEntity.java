@@ -38,9 +38,12 @@ public class BbsEntity {
 	@Column(length = 1, nullable = false)
 	private String useYn;
 	
-	@ManyToOne
-	@JoinColumn(name = "categorySeq", referencedColumnName = "categorySeq") 
-	private CategoryEntity categoryEntity;
+	/*
+	 * @ManyToOne
+	 * 
+	 * @JoinColumn(name = "categorySeq", referencedColumnName = "categorySeq")
+	 * private CategoryEntity categoryEntity;
+	 */
 	
 	
 }
