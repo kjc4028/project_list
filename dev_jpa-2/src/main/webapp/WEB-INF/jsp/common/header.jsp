@@ -37,7 +37,8 @@
 	        </li>
 		</sec:authorize>
 		<sec:authorize access="isAuthenticated()">
-			<a class="nav-link" href="/usr/logout">${user}님 로그아웃</a>
+			<a class="nav-link" href="/usr/logout">${sessionScope.user.username}(${sessionScope.user.authorities})님 로그아웃</a>
+			<a class="nav-link" href="/category/list">카테고리 관리</a>
 		</sec:authorize>	
 		<sec:authorize access="hasAuthority('ADMIN')">
 	        <li class="nav-item">

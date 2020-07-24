@@ -1,5 +1,8 @@
 package com.dev.jpa.usr.entity;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -10,9 +13,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.dev.jpa.category.CategoryEntity;
 
 import lombok.Builder;
 import lombok.Data;
@@ -28,23 +34,20 @@ public class UsrEntity {
 	public UsrEntity() {
 	}
 	
-	/*
-	 * @Id
-	 * 
-	 * @GeneratedValue(strategy = GenerationType.AUTO) private Long usrSeq;
-	 */
-	
-	//@OneToMany
 	@OneToOne
-	//@JoinTable(name = "TB_USR_ROLE", joinColumns =  @JoinColumn(name = "usr_id"), inverseJoinColumns = @JoinColumn(name="role_cd"))
-	//@JoinTable(name = "TB_USR_ROLE", joinColumns =  @JoinColumn(name = "usr_id"))
 	@JoinColumn(name = "usr_id", referencedColumnName = "usr_id") 
-	//private Set<RoleUsrEntity> role;
 	private RoleUsrEntity role;
-	
+	  
 	public void setRole(RoleUsrEntity role) {
 		this.role = role;
 	}
+	
+	/*
+	 * @OneToMany 외래키 생성시 다음번에 사용
+	 * 
+	 * @JoinColumn(name = "usr_id") private List<CategoryEntity> categoryList = new
+	 * ArrayList<CategoryEntity>();
+	 */
 	
 	/*
 	 * 사용자 아이디
