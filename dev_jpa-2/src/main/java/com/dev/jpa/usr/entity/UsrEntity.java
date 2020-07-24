@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -41,6 +42,11 @@ public class UsrEntity {
 	public void setRole(RoleUsrEntity role) {
 		this.role = role;
 	}
+	
+	//@JoinColumn(name = "usr_id") 
+	@OneToMany(mappedBy="usrEntity")
+	private List<CategoryEntity> categoryList = new ArrayList<CategoryEntity>();
+	
 	
 	/*
 	 * @OneToMany 외래키 생성시 다음번에 사용

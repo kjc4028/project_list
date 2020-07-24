@@ -44,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
             .and()
         .formLogin()
             .loginPage("/usr/login") //로그인 페이지 URL
-            .defaultSuccessUrl("/")
+            .defaultSuccessUrl("/usr/loginSuccess")
             .loginProcessingUrl("/usr/login")
             .usernameParameter("usrId")
             .passwordParameter("usrPw")

@@ -15,6 +15,7 @@
 	  <div class="container marketing">
 	    <div class="row">
 	      <div class="col-lg-10">
+			<p><a class="btn btn-secondary" href="/category/insert" role="button">카테고리 등록</a></p>
 			
 			<c:forEach items="${pageList}" var="list">
 			${list.categorySeq} | ${list.categoryNm} | ${list.useYn} | ${list.regDate}<br>

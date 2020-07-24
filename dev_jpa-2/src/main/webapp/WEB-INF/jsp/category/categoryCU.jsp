@@ -21,6 +21,10 @@
 					<label for="categoryNm" class="col-sm-2 control-label">카테고리명</label>
 					<form:input path="categoryNm" class="form-control" placeholder="카테고리 제목"/>
 				</div>
+				<%-- <div class="form-group">
+					<label for="usrId" class="col-sm-2 control-label">작성자</label>
+					<form:input path="usrId" class="form-control" placeholder="작성자 제목" readonly="true" value="${sessionScope.user.username}"/>
+				</div> --%>
 				<div class="form-group">
 					<label for="useYn" class="col-sm-2 control-label">사용여부</label>
 					<form:radiobutton path="useYn" value="Y"/> Y

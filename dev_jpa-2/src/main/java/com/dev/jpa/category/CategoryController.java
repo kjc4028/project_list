@@ -2,6 +2,7 @@ package com.dev.jpa.category;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,7 +33,6 @@ public class CategoryController {
 	
 	@RequestMapping(value="/insert", method=RequestMethod.POST)
 	public String categoryInsert(Model model, HttpServletRequest request, HttpServletResponse response, CategoryEntity categoryEntity) {
-		
 		categoryService.save(categoryEntity);
 		return "redirect:/category/list";
 	}

@@ -5,11 +5,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.ConstraintMode;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -39,8 +42,11 @@ public class CategoryEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO) 
 	private int categorySeq;
 	
-	@Column
-	private String usrId;
+	/*@Column(name="usr_id")
+	private String usrId;*/
+	@ManyToOne
+	@JoinColumn(name="user_id", foreignKey = @ForeignKey(name = "usrEntity", value = ConstraintMode.CONSTRAINT))
+	private UsrEntity usrEntity;
 	
 	@Column
 	private String categoryNm;

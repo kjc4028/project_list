@@ -92,5 +92,17 @@ public class UsrController {
 	return "redirect:/";
 	}
 
+	@RequestMapping(value = "/loginSuccess", method = RequestMethod.GET)
+	public String loginResult(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if(auth.getName().equals("anonymousUser")){
+			return "/main/mainWeb";
+		}
+		HttpSession session = request.getSession();
+		User user = (User)auth.getPrincipal();
+		session.setAttribute("user", user);	
+	return "redirect:/";
+	}
+	
 
 }

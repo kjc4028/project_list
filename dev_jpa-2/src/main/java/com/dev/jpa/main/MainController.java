@@ -17,14 +17,6 @@ public class MainController {
 
 	@RequestMapping(value={"", "/"})
 	public String mainView(HttpServletRequest req, HttpServletResponse res, Model model){
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		System.out.println("auth------------ "+auth.getName());
-		if(auth.getName().equals("anonymousUser")){
-			return "/main/mainWeb";
-		}
-		HttpSession session = req.getSession();
-		User user = (User)auth.getPrincipal();
-		session.setAttribute("user", user);		
 		return "/main/mainWeb";
 	}
 }
