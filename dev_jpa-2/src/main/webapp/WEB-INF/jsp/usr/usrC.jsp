@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
 <title>회원가입</title>
 </head>
 <body>
@@ -14,10 +13,13 @@
 	  <div class="container marketing">
 	    <div class="row">
 	      <div class="col-lg-10">
+				<div class="form-group">
+					<button class="btn btn-primary" onclick="testUsrCreate(); return false;">간편 테스트 회원가입</button>
+				</div>	      
 			<form:form modelAttribute="usrEntity" method="post" class="form-horizontal">
 				<div class="form-group">
 					<label for="usrId" class="col-sm-2 control-label">ID</label>
-					<form:input path="usrId" class="form-control" placeholder="Enter ID"/>
+					<form:input path="usrId" class="form-control" placeholder="Enter ID" value=""/>
 				</div>
 				<div class="form-group">
 					<label for="usrPw" class="col-sm-2 control-label">Password</label>
@@ -56,6 +58,19 @@
 	  </div><!-- /.container -->
 	</main>
 	
+<script type="text/javascript">
 
+ function testUsrCreate(){
+	
+	$("#usrId").attr('value', 'qwer');
+	$("#usrPw").attr('value', 'qwer');
+	$("#usrNm").attr('value', '테스트 사용자');
+	$("#rrn").attr('value', '930101');
+	$("#gender1").attr('checked','checked');
+	$("#telNum1").attr('value', '010');
+	$("#telNum2").attr('value', '0000');
+	$("#telNum3").attr('value', '0000');
+} 
+</script>
 </body>
 </html>

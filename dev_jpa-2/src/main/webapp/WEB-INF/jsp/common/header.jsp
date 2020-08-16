@@ -7,6 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="/resources/bootstrap-4.4.1-dist/css/bootstrap.min.css">
+<script type="text/javascript" src="/resources/js/jquery-3.5.1.min.js"></script>
+
 
 <style>
  [role=main]{
