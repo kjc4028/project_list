@@ -27,7 +27,6 @@ public class CategoryController {
 	
 	@RequestMapping(value="/insert", method=RequestMethod.GET)
 	public String categoryInsertView(Model model, HttpServletRequest request, HttpServletResponse response, CategoryEntity categoryEntity) {
-		
 		return "category/categoryCU";
 	}
 	

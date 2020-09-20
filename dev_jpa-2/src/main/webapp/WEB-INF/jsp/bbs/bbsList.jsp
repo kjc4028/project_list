@@ -18,7 +18,7 @@
 			<p><a class="btn btn-secondary" href="/bbs/insert" role="button">게시물 등록</a></p>
 			
 			<c:forEach items="${pageList}" var="list">
-			${list.bbsSeq} | ${list.title} | ${list.contents} | ${list.regDate}<br>
+			${list.bbsSeq} | ${list.title} | ${list.contents} | ${list.regDate} |  ${list.useYn} | ${list.categorySeq}<br>
 			</c:forEach>			
 					        
 	      </div><!-- /.col-lg-10 -->

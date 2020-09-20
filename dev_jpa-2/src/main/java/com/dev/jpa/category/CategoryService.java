@@ -21,4 +21,8 @@ public class CategoryService {
 	public List<CategoryEntity> findAll(){
 		return categoryRepository.findAll();
 	}
+	
+	public List<CategoryEntity> findByUseYn(String useYn){
+		return categoryRepository.findByUseYn(useYn);
+	}
 }

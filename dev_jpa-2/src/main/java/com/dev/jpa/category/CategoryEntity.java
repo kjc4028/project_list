@@ -55,11 +55,11 @@ public class CategoryEntity {
 	private Date regDate;
 	
 	@Column(length = 1, nullable = false)
-	private String UseYn;
+	private String useYn;
 	
 	@PrePersist
 	public void prepersist() {
-		this.UseYn = this.UseYn == null ? "N" : this.UseYn;
+		this.useYn = this.useYn == null ? "N" : this.useYn;
 		this.regDate = new Date();
 	}
 	

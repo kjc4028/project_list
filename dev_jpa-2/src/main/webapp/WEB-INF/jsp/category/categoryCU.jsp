@@ -27,7 +27,7 @@
 				</div> --%>
 				<div class="form-group">
 					<label for="useYn" class="col-sm-2 control-label">사용여부</label>
-					<form:radiobutton path="useYn" value="Y"/> Y
+					<form:radiobutton path="useYn" value="Y" checked="checked"/> Y
 					<form:radiobutton path="useYn" value="N"/> N
 				</div>
 				<button  class="btn btn-primary">카테고리 생성</button>				
