@@ -20,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dev.jpa.usr.entity.RoleEntity;
 import com.dev.jpa.usr.entity.RoleUsrEntity;
@@ -102,6 +103,20 @@ public class UsrController {
 		User user = (User)auth.getPrincipal();
 		session.setAttribute("user", user);	
 	return "redirect:/";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/namedTest", method = RequestMethod.GET)
+	public void namedTest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		//메소드명으로 쿼리 생성 테스트
+		//동일한 명의 속성이 포함되어 있는경우 정상적으로 조회하는지 확인
+		List<UsrEntity> list =  usrService.findByRoleRoleCd("R01");
+		
+		System.out.println("named test ......");
+		for(int i=0; i<list.size(); i++) {
+			System.out.println(list.get(i).getUsrNm() + " " + list.get(i).getRole().getRoleCd());
+		}
+		
 	}
 	
 

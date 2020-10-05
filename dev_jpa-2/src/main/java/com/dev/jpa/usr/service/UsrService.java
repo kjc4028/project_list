@@ -55,7 +55,11 @@ public class UsrService implements UserDetailsService  {
 		 log.info(usr.getUsrPw() + " + " + bCryptPasswordEncoder.encode(usr.getUsrPw()));
 		 usrRepository.save(usr);
 	}
-
+	
+	public List<UsrEntity> findByRoleRoleCd(String roleCd) {
+		return usrRepository.findByRoleRoleCd(roleCd);
+	}
+	
 	/**
 	 * 사용자 인증
 	 */
