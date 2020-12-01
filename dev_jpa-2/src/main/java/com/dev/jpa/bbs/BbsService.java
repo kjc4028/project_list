@@ -22,4 +22,8 @@ public class BbsService {
 		return bbsRepository.findAll();
 	}
 	
+	public BbsEntity findByBbsSeq(int bbsSeq) {
+		return bbsRepository.findByBbsSeq(bbsSeq);
+	}
+	
 }
