@@ -3,7 +3,9 @@ package com.dev.jpa.bbs;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.ConstraintMode;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -54,7 +56,11 @@ public class BbsEntity {
 	 * @JoinColumn(name = "categorySeq", referencedColumnName = "categorySeq")
 	 * private CategoryEntity categoryEntity;
 	 */
-	 
+	
+	@ManyToOne
+	@JoinColumn(name="user_id", foreignKey = @ForeignKey(name = "usrEntity", value = ConstraintMode.CONSTRAINT))
+	private UsrEntity usrEntity;
+	
 	@PrePersist
 	public void prepersist() {
 		this.useYn = this.useYn == null ? "N" : this.useYn;
