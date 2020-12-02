@@ -24,13 +24,17 @@ public class CategoryService {
 		return categoryRepository.findAll();
 	}
 
-	public List<CategoryEntity> findByUsrEntity(String userId){
+	public List<CategoryEntity> findByUsrEntityAndUseYn(String userId){
 		UsrEntity usrEntity = new UsrEntity();
 		usrEntity.setUsrId(userId);
-		return categoryRepository.findByUsrEntity(usrEntity);
+		return categoryRepository.findByUsrEntityAndUseYn(usrEntity, "Y");
 	}
 	
 	public List<CategoryEntity> findByUseYn(String useYn){
 		return categoryRepository.findByUseYn(useYn);
+	}
+	
+	public List<CategoryEntity> findByUsrEntity(UsrEntity usrEntity){
+		return categoryRepository.findByUsrEntity(usrEntity);
 	}
 }

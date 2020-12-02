@@ -37,11 +37,17 @@
 	        <li class="nav-item">
 	        	<a class="nav-link" href="/usr/login">로그인</a>
 	        </li>
+	        <li class="nav-item">
+	        	<a class="nav-link" href="/bbs/totallist">전체 게시물</a>
+	        </li>
 		</sec:authorize>
 		<sec:authorize access="isAuthenticated()">
-			<a class="nav-link" href="/usr/logout">${sessionScope.user.username}(${sessionScope.user.authorities})님 로그아웃</a>
+				<sec:authentication property="principal" var="user"/>
+				
+			<a class="nav-link" href="/usr/logout">${user.username}(${user.authorities})님 로그아웃</a>
 			<a class="nav-link" href="/category/list">카테고리 관리</a>
 			<a class="nav-link" href="/bbs/list">게시물 관리</a>
+	        <a class="nav-link" href="/bbs/totallist">전체 게시물</a>
 		</sec:authorize>	
 		<sec:authorize access="hasAuthority('ADMIN')">
 	        <li class="nav-item">

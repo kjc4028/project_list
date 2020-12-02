@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<title>게시글 목록</title>
+<title>error</title>
 </head>
 <body>
 <jsp:include page="/WEB-INF/jsp/common/header.jsp"/>
@@ -15,24 +15,9 @@
 	  <div class="container marketing">
 	    <div class="row">
 	      <div class="col-lg-10">
-			<p><a class="btn btn-secondary" href="/bbs/insert" role="button">게시물 등록</a></p>
-			
-			<table class="table table-bordered table-hover">
-			<tr>
-			  <th class="info">일련번호</th>
-			  <th class="info">제목</th>
-			  <th class="info">등록일자</th>
-			  <th class="info">작성자</th>
-			</tr>
-			<c:forEach items="${pageList}" var="list">
-				<tr>
-				  <td class="info">${list.bbsSeq}</td>
-				  <td class="info"><a href="/bbs/${list.bbsSeq}">${list.title}</a></td>
-				  <td class="info">${list.regDate}</td>
-				  <td class="info">${list.usrEntity.usrId}</td>
-				</tr>
-			</c:forEach>			
-			</table>
+	      error page <br>
+	      status : ${status} <br>
+	      path : ${path} <br>
 	      </div><!-- /.col-lg-10 -->
 	    </div><!-- /.row -->
 	  </div><!-- /.container -->

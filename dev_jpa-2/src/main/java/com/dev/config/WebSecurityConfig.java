@@ -39,7 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         .authorizeRequests() /*인가 설정*/
        		.antMatchers("/admin/**", "/city/list").hasAuthority("ADMIN")
         	//.antMatchers("/admin/**", "/city/list").access("hasRole('USER')") 
-            .antMatchers("/", "/usr/join", "/resources/**", "/docs/**").permitAll() //모든 권한 인가 허용
+            .antMatchers("/", "/usr/join", "/resources/**", "/docs/**", "/bbs/totallist").permitAll() //모든 권한 인가 허용
             .anyRequest().authenticated()
             .and()
         .formLogin()

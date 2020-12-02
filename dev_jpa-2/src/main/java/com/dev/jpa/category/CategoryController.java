@@ -25,7 +25,7 @@ public class CategoryController {
 	@RequestMapping("/list")
 	public String categoryListView(Model model, HttpServletRequest request, HttpServletResponse response, CategoryEntity categoryEntity) {
 		/* model.addAttribute("pageList", categoryService.findAll()); */
-		model.addAttribute("pageList", categoryService.findByUsrEntity(request.getRemoteUser()));
+		model.addAttribute("pageList", categoryService.findByUsrEntity(CommonUtil.getUserIdFromSession(request)));
 		return "category/categoryList";
 	}
 	

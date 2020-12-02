@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.dev.jpa.category.CategoryEntity;
 import com.dev.jpa.category.CategoryService;
 import com.dev.jpa.common.CommonUtil;
 import com.dev.jpa.usr.entity.UsrEntity;
@@ -34,6 +35,13 @@ public class BbsController {
 		return "bbs/bbsList";
 	}
 
+	@RequestMapping(value = "/totallist", method = RequestMethod.GET)
+	public String selectTotalList(Model model, HttpServletRequest request, HttpServletResponse response, BbsEntity bbsEntity) {
+		model.addAttribute("pageList", bbsService.findAll());
+		
+		return "bbs/bbsList";
+	}
+
 	@RequestMapping(value = "/{bbsSeq}", method = RequestMethod.GET)
 	public String selectBbs(@PathVariable int bbsSeq ,Model model, HttpServletRequest request, HttpServletResponse response) {
 		
@@ -45,7 +53,7 @@ public class BbsController {
 	@RequestMapping(value = "/update/{bbsSeq}", method = RequestMethod.GET)
 	public String bbsUpdateView(@PathVariable int bbsSeq, Model model, HttpServletRequest request, HttpServletResponse response, BbsEntity bbsEntity) {
 		//사용중인 카테고리 리스트 호출
-		model.addAttribute("categoryList", categoryService.findByUseYn("Y"));
+		model.addAttribute("categoryList", categoryService.findByUsrEntityAndUseYn(request.getRemoteUser()));
 		model.addAttribute("bbsEntity", bbsService.findByBbsSeq(bbsSeq));
 		
 		return "bbs/bbsCU";
@@ -64,7 +72,10 @@ public class BbsController {
 	@RequestMapping(value = "/insert", method = RequestMethod.GET)
 	public String bbsInsertView(Model model, HttpServletRequest request, HttpServletResponse response, BbsEntity bbsEntity) {
 		//사용중인 카테고리 리스트 호출
-		model.addAttribute("categoryList", categoryService.findByUseYn("Y"));
+		//model.addAttribute("categoryList", categoryService.findByUseYn("Y"));
+		CategoryEntity categoryEntity = new CategoryEntity();
+		categoryEntity.setUsrEntity(CommonUtil.getUserIdFromSession(request));
+		model.addAttribute("categoryList", categoryService.findByUsrEntityAndUseYn(request.getRemoteUser()));
 		
 		return "bbs/bbsCU";
 	}
