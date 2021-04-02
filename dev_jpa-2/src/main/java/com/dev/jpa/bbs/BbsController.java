@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,14 +32,38 @@ public class BbsController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String selectList(Model model, HttpServletRequest request, HttpServletResponse response, BbsEntity bbsEntity) {
 		//model.addAttribute("pageList", bbsService.findAll());
-		model.addAttribute("pageList", bbsService.findByUsrEntity(request.getRemoteUser()));
+		
+		int pageNum = 1;
+		if(request.getParameter("pageNum") !=null && !"".equals(request.getParameter("pageNum"))) {
+			pageNum = Integer.parseInt(request.getParameter("pageNum"));
+		}
+		
+		if(pageNum < 0) {
+			pageNum = 1;
+		}
+		
+		Page<BbsEntity> pageData = bbsService.findByUsrEntityPage(request.getRemoteUser(), pageNum);
+				
+		model.addAttribute("page", pageData.getTotalPages());
+		model.addAttribute("pageList", pageData.getContent());
 		
 		return "bbs/bbsList";
 	}
 
 	@RequestMapping(value = "/totallist", method = RequestMethod.GET)
 	public String selectTotalList(Model model, HttpServletRequest request, HttpServletResponse response, BbsEntity bbsEntity) {
-		model.addAttribute("pageList", bbsService.findAll());
+		//model.addAttribute("pageList", bbsService.findAll());
+		int pageNum = 1;
+		if(request.getParameter("pageNum") !=null && !"".equals(request.getParameter("pageNum"))) {
+			pageNum = Integer.parseInt(request.getParameter("pageNum"));
+		}
+		
+		if(pageNum < 0) {
+			pageNum = 1;
+		}
+		Page<BbsEntity> pageData = bbsService.findOpenPage(pageNum);
+		model.addAttribute("page", pageData.getTotalPages());
+		model.addAttribute("pageList", pageData.getContent());
 		
 		return "bbs/bbsList";
 	}
